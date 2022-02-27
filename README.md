@@ -1,5 +1,7 @@
 # Saharok Prod K8s
+steps documented here:
 
+https://cloud.yandex.ru/docs/managed-kubernetes/tutorials/ingress-cert-manager
 
 
 ## Getting started
