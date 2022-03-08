@@ -4,5 +4,5 @@ echo "updating helm"
 helm repo update
 echo "creating namespace for monitoring"
 kubectl create namespace monitoring
-echo "installing grafana"
-helm install loki-grafana grafana/grafana --namespace monitoring
+echo "installing grafana. We are installing specific version for adding users (latest not working)"
+helm install loki-grafana --namespace monitoring -f grafana-values.yaml grafana/grafana --version 6.22.0
