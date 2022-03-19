@@ -2,7 +2,7 @@ server:
   ingress:
     enabled: true
   service:
-    type: ClusterIP
+    type: LoadBalancer
 persistence:
   enabled: true
   type: pvc
