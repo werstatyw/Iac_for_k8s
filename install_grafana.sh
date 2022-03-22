@@ -5,5 +5,4 @@ helm repo update
 echo "creating namespace for monitoring"
 kubectl create namespace monitoring
 echo "installing grafana. We are installing specific version for adding users (latest not working)"
-helm upgrade --install loki-grafana --namespace monitoring -f grafana-values.yaml grafana/grafana --version 6.22.0 --set type=LoadBalancer
-
+helm upgrade --install loki-grafana --namespace monitoring grafana/grafana --version 6.22.0 --set service.type=LoadBalancer
