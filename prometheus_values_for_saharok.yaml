@@ -16,4 +16,25 @@ serverFiles:
             annotations:
               description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
               summary: 'Instance {{ $labels.instance }} down'
- 
+
+## alertmanager ConfigMap entries
+##
+alertmanagerFiles:
+  alertmanager.yml:
+    global: {}
+      # slack_api_url: ''
+
+    receivers:
+      - name: default-receiver
+        # slack_configs:
+        #  - channel: '@you'
+        #    send_resolved: true
+      - name: 'discord_webhook'
+        webhook_configs:
+        - url: 'http://localhost:9094'
+
+    route:
+      group_wait: 10s
+      group_interval: 5m
+      receiver: default-receiver
+      repeat_interval: 3h

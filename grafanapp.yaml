@@ -14,7 +14,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: new.saharok.store
+  - host: monitoring.saharok.store
     http:
       paths:
       - backend:
@@ -24,11 +24,11 @@ spec:
               number: 3000
         path: /grafana
         pathType: ImplementationSpecific
-  tls:
-  - hosts:
-    - new.saharok.store
-    secretName: new-saharok-store-tls
-status:
-  loadBalancer:
-    ingress:
-    - ip: 84.252.128.148
+  # tls:
+  # - hosts:
+  #   - monitoring.saharok.store
+  #   secretName: new-saharok-store-tls
+# status:
+#   loadBalancer:
+#     ingress:
+#     - ip: 84.252.128.148
