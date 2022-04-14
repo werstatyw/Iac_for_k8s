@@ -795,8 +795,8 @@ serverFiles:
               summary: Kubernetes API server latency (instance {{ $labels.instance }})
               description: "Kubernetes API server has a 99th percentile latency of {{ $value }} seconds for {{ $labels.verb }} {{ $labels.resource }}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-      - name: Loki
-        rule:
+      # - name: Loki
+      #   rule:
           - alert: LokiProcessTooManyRestarts
             expr: changes(process_start_time_seconds{job=~"loki"}[15m]) > 2
             for: 0m
