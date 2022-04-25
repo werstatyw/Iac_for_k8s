@@ -229,13 +229,13 @@ serverFiles:
           # Alert threshold depends on nature of application.
           # Please read: https://github.com/samber/awesome-prometheus-alerts/issues/58
           - alert: HostContextSwitching
-            expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 2000
+            expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 3000
             for: 0m
             labels:
               severity: warning
             annotations:
               summary: Host context switching (instance {{ $labels.instance }})
-              description: "Context switching is growing on node (> 2000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              description: "Context switching is growing on node (> 3000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
           - alert: HostSwapIsFillingUp
             expr: (1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80
@@ -440,14 +440,14 @@ serverFiles:
               summary: Container Memory usage (instance {{ $labels.instance }})
               description: "Container Memory usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-          - alert: ContainerVolumeUsage
-            expr: (1 - (sum(container_fs_inodes_free{name!=""}) BY (instance) / sum(container_fs_inodes_total) BY (instance))) * 100 > 80
-            for: 2m
-            labels:
-              severity: warning
-            annotations:
-              summary: Container Volume usage (instance {{ $labels.instance }})
-              description: "Container Volume usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          # - alert: ContainerVolumeUsage
+          #   expr: (1 - (sum(container_fs_inodes_free{name!=""}) BY (instance) / sum(container_fs_inodes_total) BY (instance))) * 100 > 80
+          #   for: 2m
+          #   labels:
+          #     severity: warning
+          #   annotations:
+          #     summary: Container Volume usage (instance {{ $labels.instance }})
+          #     description: "Container Volume usage is above 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
           - alert: ContainerVolumeIoUsage
             expr: (sum(container_fs_io_current{name!=""}) BY (instance, name) * 100) > 80
@@ -833,6 +833,125 @@ serverFiles:
               summary: Loki request latency (instance {{ $labels.instance }})
               description: "The {{ $labels.job }} {{ $labels.route }} is experiencing {{ printf \"%.2f\" $value }}s 99th percentile latency\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"              
 
+      - name: Etcd
+        rules:
+          - alert: EtcdInsufficientMembers
+            expr: count(etcd_server_id) % 2 == 0
+            for: 0m
+            labels:
+              severity: critical
+            annotations:
+              summary: Etcd insufficient Members (instance {{ $labels.instance }})
+              description: "Etcd cluster should have an odd number of members\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdNoLeader
+            expr: etcd_server_has_leader == 0
+            for: 0m
+            labels:
+              severity: critical
+            annotations:
+              summary: Etcd no Leader (instance {{ $labels.instance }})
+              description: "Etcd cluster have no leader\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfLeaderChanges
+            expr: increase(etcd_server_leader_changes_seen_total[10m]) > 2
+            for: 0m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high number of leader changes (instance {{ $labels.instance }})
+              description: "Etcd leader changed more than 2 times during 10 minutes\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfFailedGrpcRequests
+            expr: sum(rate(grpc_server_handled_total{grpc_code!="OK"}[1m])) BY (grpc_service, grpc_method) / sum(rate(grpc_server_handled_total[1m])) BY (grpc_service, grpc_method) > 0.01
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high number of failed GRPC requests (instance {{ $labels.instance }})
+              description: "More than 1% GRPC request failure detected in Etcd\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfFailedGrpcRequests
+            expr: sum(rate(grpc_server_handled_total{grpc_code!="OK"}[1m])) BY (grpc_service, grpc_method) / sum(rate(grpc_server_handled_total[1m])) BY (grpc_service, grpc_method) > 0.05
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: Etcd high number of failed GRPC requests (instance {{ $labels.instance }})
+              description: "More than 5% GRPC request failure detected in Etcd\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdGrpcRequestsSlow
+            expr: histogram_quantile(0.99, sum(rate(grpc_server_handling_seconds_bucket{grpc_type="unary"}[1m])) by (grpc_service, grpc_method, le)) > 0.15
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd GRPC requests slow (instance {{ $labels.instance }})
+              description: "GRPC requests slowing down, 99th percentile is over 0.15s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfFailedHttpRequests
+            expr: sum(rate(etcd_http_failed_total[1m])) BY (method) / sum(rate(etcd_http_received_total[1m])) BY (method) > 0.01
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high number of failed HTTP requests (instance {{ $labels.instance }})
+              description: "More than 1% HTTP failure detected in Etcd\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfFailedHttpRequests
+            expr: sum(rate(etcd_http_failed_total[1m])) BY (method) / sum(rate(etcd_http_received_total[1m])) BY (method) > 0.05
+            for: 2m
+            labels:
+              severity: critical
+            annotations:
+              summary: Etcd high number of failed HTTP requests (instance {{ $labels.instance }})
+              description: "More than 5% HTTP failure detected in Etcd\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHttpRequestsSlow
+            expr: histogram_quantile(0.99, rate(etcd_http_successful_duration_seconds_bucket[1m])) > 0.15
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd HTTP requests slow (instance {{ $labels.instance }})
+              description: "HTTP requests slowing down, 99th percentile is over 0.15s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdMemberCommunicationSlow
+            expr: histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_bucket[1m])) > 0.15
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd member communication slow (instance {{ $labels.instance }})
+              description: "Etcd member communication slowing down, 99th percentile is over 0.15s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighNumberOfFailedProposals
+            expr: increase(etcd_server_proposals_failed_total[1h]) > 5
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high number of failed proposals (instance {{ $labels.instance }})
+              description: "Etcd server got more than 5 failed proposals past hour\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighFsyncDurations
+            expr: histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[1m])) > 0.5
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high fsync durations (instance {{ $labels.instance }})
+              description: "Etcd WAL fsync duration increasing, 99th percentile is over 0.5s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+          - alert: EtcdHighCommitDurations
+            expr: histogram_quantile(0.99, rate(etcd_disk_backend_commit_duration_seconds_bucket[1m])) > 0.25
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: Etcd high commit durations (instance {{ $labels.instance }})
+              description: "Etcd commit duration increasing, 99th percentile is over 0.25s\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
       # - name: MongoDb - will add after database move
 
       #   rules:
@@ -898,7 +1017,66 @@ serverFiles:
       #       annotations:
       #         summary: MongoDB virtual memory usage (instance {{ $labels.instance }})
       #         description: "High memory usage\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+          - alert: HighLoadQuietDuringWeekendAndNight
+            expr: node_load5 > 10 and ON() (europe_london_weekday and europe_paris_weekday)
 
+          - alert: HighLoadQuietDuringBackup
+            expr: node_load5 > 10 and ON() absent(hour() == 2)
+
+          - alert: HighLoad
+            expr: |
+                node_load5 > 20 and ON() (europe_london_weekday and europe_paris_weekday)
+                or
+                node_load5 > 10
+
+  recording_rules.yml:
+    groups:
+      - name: timezones
+        rules:
+          - record: is_european_summer_time
+            expr: |
+                (vector(1) and (month() > 3 and month() < 10))
+                or
+                (vector(1) and (month() == 3 and (day_of_month() - day_of_week()) >= 25) and absent((day_of_month() >= 25) and (day_of_week() == 0)))
+                or
+                (vector(1) and (month() == 10 and (day_of_month() - day_of_week()) < 25) and absent((day_of_month() >= 25) and (day_of_week() == 0)))
+                or
+                (vector(1) and ((month() == 10 and hour() < 1) or (month() == 3 and hour() > 0)) and ((day_of_month() >= 25) and (day_of_week() == 0)))
+                or
+                vector(0)
+
+          - record: europe_london_time
+            expr: time() + 3600 * is_european_summer_time
+          - record: europe_paris_time
+            expr: time() + 3600 * (1 + is_european_summer_time)
+
+          - record: europe_london_hour
+            expr: hour(europe_london_time)
+          - record: europe_paris_hour
+            expr: hour(europe_paris_time)
+
+          - record: europe_london_weekday
+            expr: 0 < day_of_week(europe_london_time) < 6
+          - record: europe_paris_weekday
+            expr: 0 < day_of_week(europe_paris_time) < 6
+
+          - record: europe_london_daytime
+            expr: 8 < europe_london_hour < 18
+          - record: europe_paris_daytime
+            expr: 8 < europe_paris_hour < 18
+
+          # new year's day / xmas / labor day / all saints' day / ...
+          - record: europe_french_public_holidays
+            expr: |
+                (vector(1) and month(europe_paris_time) == 1 and day_of_month(europe_paris_time) == 1)
+                or
+                (vector(1) and month(europe_paris_time) == 12 and day_of_month(europe_paris_time) == 25)
+                or
+                (vector(1) and month(europe_paris_time) == 5 and day_of_month(europe_paris_time) == 1)
+                or
+                (vector(1) and month(europe_paris_time) == 11 and day_of_month(europe_paris_time) == 1)
+                or
+                vector(0)
 ## alertmanager ConfigMap entries
 ##
 alertmanagerFiles:
