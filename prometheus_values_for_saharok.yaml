@@ -1103,3 +1103,10 @@ alertmanagerFiles:
       group_interval: 5m
       repeat_interval: 3h 
       receiver: discord_webhook
+    
+# server:
+#   readinessProbeInitialDelay: 60
+#   readinessProbePeriodSeconds: 5
+#   readinessProbeTimeout: 4
+#   readinessProbeFailureThreshold: 3
+#   readinessProbeSuccessThreshold: 1
