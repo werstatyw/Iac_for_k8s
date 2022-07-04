@@ -1,6 +1,6 @@
 #1000 requests
 
-kubectl run -it --rm wrk \                  
+kubectl run -it --rm wrk \
 --image=williamyeh/wrk \
 --restart=Never \
 --command \
@@ -8,7 +8,7 @@ kubectl run -it --rm wrk \
 
 #normal baseline
 
-kubectl run -it --rm wrk \                  
+kubectl run -it --rm wrk \
 --image=williamyeh/wrk \
 --restart=Never \
 --command \
