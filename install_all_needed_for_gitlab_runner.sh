@@ -26,9 +26,41 @@ sudo gitlab-runner start
 REGISTRATION_TOKEN=GR1348941bN-PHzgm8zMrx1sN-zVz
 sudo gitlab-runner register --url https://gitlab.com/ --registration-token $REGISTRATION_TOKEN
 
-#now let's proceed to docker-compose
+#let's additionally install docker and docker-compose 
+echo "installing docker and docker-compose plus adding gitlab-runner access rights for building docker containers:"
+#cleaning up previous versions of docker:
 
-sudo apt-get install docker-compose -y
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+#then adding needed repository, keys and software:
+
+sudo apt-get update
+
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+#then let's install key for docker:
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+#setting up the repository:
+
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+#then finishing installing the needed docker packages:
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+
+#at the end, we are adding gitlab-runner user for running docker tasks:
+echo "adding gitlab-runner for docker access rights"
+usermod -aG docker gitlab-runner
 
 echo "then, let's install release-cli tool:"
 #download first
