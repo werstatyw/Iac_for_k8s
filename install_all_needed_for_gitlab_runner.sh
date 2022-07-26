@@ -1,7 +1,7 @@
 #first of all, generate ssh key on your machine and pass it to remote vm (i've used one vm on eurobyte, ubuntu 18.04)
-ssh-keygen
+#ssh-keygen
 #then pass it to vm:
-ssh-copy-id root@vm528622.eurodir.ru 
+#ssh-copy-id root@vm528622.eurodir.ru 
 #pass root password from the console. now you're able to conntect to this vm via "ssh root@vm528622.eurodir.ru"
 
 #then, let's update needed packages and install them in order to server will function
