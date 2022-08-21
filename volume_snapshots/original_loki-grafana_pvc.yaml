@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    meta.helm.sh/release-name: loki-grafana
+    meta.helm.sh/release-namespace: monitoring
+    pv.kubernetes.io/bind-completed: "yes"
+    pv.kubernetes.io/bound-by-controller: "yes"
+    volume.beta.kubernetes.io/storage-provisioner: disk-csi-driver.mks.ycloud.io
+    volume.kubernetes.io/selected-node: cl187l41odr0r6io6qd1-eqyz
+  creationTimestamp: "2022-03-23T07:29:06Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  - snapshot.storage.kubernetes.io/pvc-as-source-protection
+  labels:
+    app.kubernetes.io/instance: loki-grafana
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 8.3.6
+    helm.sh/chart: grafana-6.22.0
+  name: loki-grafana
+  namespace: monitoring
+  resourceVersion: "71117929"
+  uid: ab060532-7f75-4966-8282-fbf0a7e1a8ad
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: yc-network-hdd
+  volumeMode: Filesystem
+  volumeName: pvc-ab060532-7f75-4966-8282-fbf0a7e1a8ad
+status:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  phase: Bound
