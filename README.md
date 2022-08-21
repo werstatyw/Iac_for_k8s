@@ -1,4 +1,4 @@
-# Saharok Prod K8s
+# temlates for maintaining most of the things in yc k8s
 steps documented here:
 
 https://cloud.yandex.ru/docs/managed-kubernetes/tutorials/ingress-cert-manager
