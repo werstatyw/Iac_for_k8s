@@ -1,0 +1,500 @@
+   3  kubectl get pods -n unifiedapi -w
+    4  history | grep port-forward
+    5  kubectl port-forward api-nginx-experimental-front-nodejs-nginx-6ddd6bbf46-jcpnr 80:80 -n unifiedapi
+    6  kubectl port-forward api-nginx-experimental-front-nodejs-nginx-6ddd6bbf46-jcpnr 80:8080 -n unifiedapi
+    7  kubectl port-forward api-nginx-experimental-front-nodejs-nginx-6ddd6bbf46-jcpnr 8080:80 -n unifiedapi
+    8  exit
+    9  curl localhost
+   10  curl localhost:80
+   11  curl 172.17.0.3:80
+   12  curl 172.17.0.3:443
+   13  df -h
+   14  curl 172.17.0.3
+   15  kubectl get pods -n unifiedapi
+   16  kubectl port-forward api-nginx-experimental-front-nodejs-nginx-6ddd6bbf46-jcpnr 8080:80 -n unifiedapi
+   17  kubectl get svc -n unifiedapi
+   18  kubectl port-forward api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+   19  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+   20  docker logs svc/api-nginx-experimental-front-nodejs-nginx
+   21  docker logs svc/api-nginx-experimental-front-nodejs-nginx -n unifiedapi
+   22  docker logs deployment/api-nginx-experimental-front-nodejs-nginx -n unifiedapi
+   23  kubectl logs deployment/api-nginx-experimental-front-nodejs-nginx -n unifiedapi
+   24  history | grep "kubectl exec"
+   25  kubectl exec -it mongodb-b9bdcd567-qn58g -n unifiedapi -- bin/sh
+   26  kubectl get pods -n unifiedapi
+   27  kubectl exec -it api-nginx-experimental-front-nodejs-nginx-6ddd6bbf46-jcpnr -n unifiedapi -- bin/sh
+   28  kubectl get pods -n unifiedapi
+   29  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+   30  history | grep "docker run"
+   31  docker image ls
+   32  docker run registry.gitlab.com/teamscanblox/api/nginx:1.1.3 
+   33  docker ps
+   34  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' php
+   35  cd vyyer/API_experimental/
+   36  git pull
+   37  history | grep "docker build"
+   38  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.2.0 -f Dockerfile.nginx .
+   39  docker run registry.gitlab.com/teamscanblox/api/nginx:1.2.0
+   40  git pull
+   41  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.2.1 -f Dockerfile.nginx .
+   42  git pull
+   43  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.2.1 -f Dockerfile.nginx .
+   44  git pull
+   45  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.2.1 -f Dockerfile.nginx .
+   46  git pull
+   47  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.2.1 -f Dockerfile.nginx .
+   48  docker run registry.gitlab.com/teamscanblox/api/nginx:1.2.1
+   49  curl 172.17.0.3
+   50  curl 172.17.0.3:443
+   51  curl localhost
+   52  curl localhost:8080
+   53  curl localhost
+   54  curl 172.17.0.3
+   55  culr localhost:8080
+   56  curl localhost:8080
+   57  exit
+   58  kubectl get services kube-dns --namespace=kube-system
+   59  kubectl get svc -n unifiedapi
+   60  kubectl exec -ti svc api-nginx-experimental-front-nodejs-nginx -n unifiedapi -- sh
+   61  kubectl exec -ti svc/api-nginx-experimental-front-nodejs-nginx -n unifiedapi -- sh
+   62  cd vyyer/API_experimental/
+   63  git pull
+   64  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.4.0 -f Dockerfile.nginx80 .
+   65  docker push registry.gitlab.com/teamscanblox/api/nginx:1.4.0
+   66  cd vyyer/API_experimental/
+   67  git pull
+   68  history | grep helm upgrade
+   69  history | grep "helm upgrade"
+   70  helm upgrade --install api-nginx-experimental  .helm/front-nodejs-nginx/ --namespace unifiedapi
+   71  kubectl get pods -n unifiedapi
+   72  kubectl port-forward svc/api-nginx-experimental-front-nodejs
+   73  history | grep port-forward
+   74  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+   75  kubectl get pod -n unifiedapi
+   76  kubectl logs api-nginx-experimental-front-nodejs-nginx-bb467488b-jtvwh -n unifiedapi
+   77  kubectl get svc -n unifiedapi
+   78  curl 10.105.206.96:9000
+   79  kubectl get pods -n unifiedapi
+   80  kubectl logs api-php-experimental-5476686764-krbqq  -n unifiedapi
+   81  kubectl port-forward svc/api-php-experimental 9000:9000 -n unifiedapi
+   82  git pull
+   83  history | grep "helm upgrade"
+   84  helm upgrade --install api-php-experimental  .helm/api-php --namespace unifiedapi --dry-run --debug
+   85  helm upgrade --install api-php-experimental  .helm/api-php --namespace unifiedapi
+   86  kubectl get pods -n unifiedapi
+   87  kubectl port-forward svc/api-php-experimental 9000:9000 -n unifiedapi
+   88  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+   89  cd vyyer/API_experimental/
+   90  history | grep "1.3"
+   91  sudo docker build -t registry.gitlab.com/teamscanblox/api/api_php:1.4.0 -f Dockerfile_multi.php . &
+   92  ps T
+   93  fg
+   94  git pull
+   95  sudo docker build -t registry.gitlab.com/teamscanblox/api/api_php:1.4.0 -f Dockerfile_multi.php .
+   96  docker push registry.gitlab.com/teamscanblox/api/api_php:1.4.0
+   97  history | grep "helm upgrade"
+   98  helm upgrade --install api-php-experimental  .helm/api-php --namespace unifiedapi
+   99  exit
+  100  kubectl get pods -n unifiedapi
+  101  kubectl exec -it api-php-experimental-787d95c5c7-khgmq  -n unifiedapi -- bin/sh
+  102  kubectl exec -it api-php-experimental-787d95c5c7-khgmq  -n unifiedapi -- sh
+  103  cd vyyer/API_experimental/
+  104  git pull
+  105  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.5.0 -f Dockerfile.nginx80 .
+  106  docker push registry.gitlab.com/teamscanblox/api/nginx:1.5.0 &
+  107  history | grep helm
+  108  helm upgrade --install api-nginx-experimental  .helm/front-nodejs-nginx/ --namespace unifiedapi
+  109  kubectl get pods -n unifiedapi
+  110  kubectl get pods -n unifiedapi -w
+  111  kubectl get events -n unifiedapi
+  112  kubectl get pods -n unifiedapi -w
+  113  history | grep port-forward
+  114  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  115  cd vyyer/API_experimental/
+  116  git status
+  117  docker image ls
+  118  docker inspect registry.gitlab.com/zefir-projects/mytask/mytask-app/bott-dev 
+  119  cd docker-deep-dive/
+  120  ls
+  121  cd image_history_inspect_examples/
+  122  ls
+  123  cd docker-save-nginx-stable-alpine/
+  124  ls -al
+  125  ls -la
+  126  ls -la 06b48c02b15e4d06fc9cacccc25837a53e39a60bfeca06f2514026ab1f40654c/
+  127  sudo apt-get install build-essential
+  128  cd vyyer/API_experimental/
+  129  git pull
+  130  exit
+  131  cd docker-deep-dive/
+  132  ls
+  133  cd image_history_inspect_examples/
+  134  ls
+  135  podman
+  136  sudo apt-get install podman
+  137  sudo apt-get -y install podman
+  138  sudo apt-get update
+  139  sudo apt-get -y install podman
+  140  sudo mkdir -p /etc/apt/keyrings
+  141  curl -fsSL https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/xUbuntu_$(lsb_release -rs)/Release.key   | gpg --dearmor   | sudo tee /etc/apt/keyrings/devel_kubic_libcontainers_unstable.gpg > /dev/null
+  142  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/devel_kubic_libcontainers_unstable.gpg]\
+  143      https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/xUbuntu_$(lsb_release -rs)/ /"   | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:unstable.list > /dev/null
+  144  sudo apt-get update -qq
+  145  sudo apt-get -qq -y install podman
+  146  apt-get install software-properties-common -y
+  147  sudo apt-get install software-properties-common -y
+  148  add-apt-repository -y ppa:projectatomic/ppa
+  149  sudo add-apt-repository -y ppa:projectatomic/ppa
+  150  sudo apt-get install podman -y
+  151  podman --version
+  152  podman info
+  153  bash 2_nginx_example_podman_skopeo.sh 
+  154  sudo apt-get install skopeo
+  155  bash 2_nginx_example_podman_skopeo.sh 
+  156  nerdctl
+  157  sudo apt-get install nerdctl
+  158  brew install nerdctl
+  159  sudo apt intall linuxbrew-wrapper
+  160  sudo apt install linuxbrew-wrapper
+  161  brew install nerdctl
+  162  echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >>~/.bash_profile
+  163  echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >>~/.bash_profile
+  164  echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >>~/.bash_profile
+  165  cat ~/.bash_profile
+  166  echo $PATH
+  167  PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+  168  echo $PATH
+  169  brew install gcc
+  170  brew install nerdctl
+  171  nerdctl
+  172  nerdctl --namespace unifiedapi ps -a
+  173  sudo nerdctl --namespace unifiedapi ps -a
+  174  containerd-rootless-setuptool.sh install
+  175  lima nerdctl
+  176  nerdctl --version
+  177  nerdctl
+  178  cd /home/linuxbrew/.linuxbrew/Cellar/nerdctl/1.3.0/
+  179  ls
+  180  cd bin/
+  181  ls
+  182  containerd-rootless-setuptool.sh install
+  183  cd ..
+  184  ls
+  185  cd Z
+  186  cd~
+  187  cd ~
+  188  https://github.com/containerd/nerdctl/blob/main/extras/rootless/containerd-rootless-setuptool.sh install
+  189  bash https://github.com/containerd/nerdctl/blob/main/extras/rootless/containerd-rootless-setuptool.sh install
+  190  curl -L https://github.com/containerd/nerdctl/blob/main/extras/rootless/containerd-rootless-setuptool.sh
+  191  curl -O https://github.com/containerd/nerdctl/blob/main/extras/rootless/containerd-rootless-setuptool.sh
+  192  ls
+  193  containerd-rootless-setuptool.sh install
+  194  cat containerd-rootless-setuptool.sh
+  195  bash containerd-rootless-setuptool.sh install
+  196  nerdctl images
+  197  sudo nerdctl
+  198  bash containerd-rootless-setuptool.sh install
+  199  bash containerd-rootless-setuptool.sh
+  200  nerdctl run -it --rm alpine
+  201  dive
+  202  wget https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb sudo apt install ./dive_0.9.2_linux_amd64.deb
+  203  dive
+  204  sudo apt install ./dive_0.9.2_linux_amd64.deb
+  205  dive
+  206  dive IMAGE=ghcr.io/codepraxis-io/alpine3.16:openjdk17
+  207  dive ghcr.io/codepraxis-io/ubuntu22.04:openjdk11
+  208  docker image ls
+  209  dive registry.gitlab.com/teamscanblox/api/api_php:1.4.0
+  210  crane catalog
+  211  kubectl get pods -n unifiedapi
+  212  kubectl logs api-nginx-experimental-front-nodejs-nginx-5c9f554b6f-qnwrh -n unifiedapi
+  213  cd vyyer/API_experimental/
+  214  ls
+  215  cd api/
+  216  ls
+  217  cd public/
+  218  ls
+  219  cd ..
+  220  docker-compose up
+  221  docker-compose up -d
+  222  docker ps
+  223  docker ps -a
+  224  docker logs
+  225  docker logs 5f4c6d184891
+  226  docker-compose down
+  227  vi nginx_config/nginx.conf 
+  228  mv nginx_config/nginx_80.conf ~/vyyer/
+  229  docker-compose up -d
+  230  docker ps
+  231  docker logs 6d8dfd073611
+  232  git pull
+  233  cd nginx_config/
+  234  ls
+  235  cd ..
+  236  history | grep "docker build"
+  237  sudo docker build -t registry.gitlab.com/teamscanblox/api/nginx:1.6.0 -f Dockerfile.nginx80 .
+  238  docker push registry.gitlab.com/teamscanblox/api/nginx:1.6.0
+  239  history | grep "helm install"
+  240  history | grep "helm upgrade"
+  241  helm upgrade --install api-nginx-experimental  .helm/front-nodejs-nginx/ --namespace unifiedapi
+  242  kubectl get pods -n unifiedapi
+  243  history | grep port-forward
+  244  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  245  curl localhost:8080
+  246  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8081:80 -n unifiedapi
+  247  cd vyyer/API_experimental/
+  248  kubectl get pods
+  249  kubectl get pods -n unifiedapi
+  250  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  251  docker ps
+  252  docker-compose down
+  253  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  254  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  255  curl localhost:8080
+  256  kubectl get pods -n unifiedapi
+  257  helm repo add bitnami https://charts.bitnami.com/bitnami
+  258  helm install postgresql --set metrics.enabled=true,auth.database=vyyer_api bitnami/postgresql -n unifiedapi
+  259  kubectl get pods -n unifiedapi
+  260  kubectl get pods -n unifiedapi
+  261  kubectl get svc -n unifiedapi
+  262  kubectl get pods -n unifiedapi
+  263  cd vyyer/API_experimental/
+  264  cat .env
+  265  cat api/.env
+  266  kubectl get pvc -n unifiedapi
+  267  git status
+  268   export POSTGRES_PASSWORD=$(kubectl get secret --namespace unifiedapi postgresql -o jsonpath="{.data.postgres-password}" | base64 -d)
+  269      kubectl run postgresql-client --rm --tty -i --restart='Never' --namespace unifiedapi --image docker.io/bitnami/postgresql:14.3.0-debian-11-r3 --env="PGPASSWORD=$POSTGRES_PASSWORD"       --command -- psql --host postgresql -U postgres -d vyyer_api -p 5432
+  270  kubectl get secret --namespace unifiedapi postgresql -o jsonpath="{.data.postgres-password}" | base64 -d
+  271  vi api/.env
+  272  cd .helm/
+  273  helm pull postgresql bitnami/postgresql
+  274  helm pull bitnami/postgresql
+  275  ls
+  276  untar postgresql-11.6.6.tgz 
+  277  helm pull bitnami/postgresql --untar
+  278  ls
+  279  rm -r postgresql-11.6.6.tgz 
+  280  ls
+  281  git status
+  282  cd ..
+  283  git add .helm/postgresql/
+  284  git status
+  285  git commit -m "configuring postgres helm chart"
+  286  git push
+  287  helm uninstall postgres
+  288  helm repo list
+  289  helm uninstall postgres -n unifiedapi
+  290  helm uninstall postgresql bitnami/postgresql -n unifiedapi
+  291  git pull
+  292  helm update --install postgres .helm/postgresql/ -n unifiedapi --dry-run --debug
+  293  helm upgrade --install postgres .helm/postgresql/ -n unifiedapi --dry-run --debug
+  294  helm upgrade --install postgres .helm/postgresql/ -n unifiedapi
+  295  kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d
+  296  git pull
+  297  helm upgrade --install postgres .helm/postgresql/ -n unifiedapi
+  298  kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d
+  299  kubectl get pods -n unifiedapi
+  300   export POSTGRES_PASSWORD=$(kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.password}" | base64 -d)
+  301   kubectl run postgres-postgresql-client --rm --tty -i --restart='Never' --namespace unifiedapi --image docker.io/bitnami/postgresql:14.3.0-debian-11-r3 --env="PGPASSWORD=$POSTGRES_PASSWORD"       --command -- psql --host postgres-postgresql -U vyyer_apiuser -d vyyer_api -p 5432
+  302  kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.password}" | base64 -d
+  303  export POSTGRES_PASSWORD=$(kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.password}" | base64 -d)
+  304  kubectl run postgres-postgresql-client --rm --tty -i --restart='Never' --namespace unifiedapi --image docker.io/bitnami/postgresql:14.3.0-debian-11-r3 --env="PGPASSWORD=$POSTGRES_PASSWORD" >       --command -- psql --host postgres-postgresql -U vyyer_apiuser -d vyyer_api -p 5432
+  305  cd vyyer/API_experimental/
+  306  cat api/.env
+  307  kubectl get svc
+  308  kubectl get svc -n unifiedapi
+  309  history
+  310  helm update --install postgres .helm/postgresql/ -n unifiedapi --dry-run --debug
+  311  helm upgrade --install postgres .helm/postgresql/ -n unifiedapi --dry-run --debug
+  312  export POSTGRES_PASSWORD=$(kubectl get secret --namespace unifiedapi postgres-postgresql -o jsonpath="{.data.password}" | base64 -d)
+  313  psql --host 127.0.0.1 -U vyyer_apiuser -d vyyer_api -p 5432
+  314  cat /api/.env
+  315  cat api/.env
+  316  vi api/.env
+  317  git pull
+  318  history | grep "docker build"
+  319  sudo docker build -t registry.gitlab.com/teamscanblox/api/api_php:1.5.0 -f Dockerfile_multi.php .
+  320  sudo apt-get install psql
+  321  sudo apt-get install psql-client
+  322  sudo apt-get install postgresql-client-12
+  323  sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+  324  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  325  sudo apt-get update
+  326  sudo apt-get install postgresql-client-12
+  327  psql --host 127.0.0.1 -U vyyer_apiuser -d vyyer_api -p 5432
+  328  cat /api/.env
+  329  cat api/.env
+  330  psql --host 127.0.0.1 -U vyyer_apiuser -d vyyer_api -p 5432
+  331  psql --host localhost -U vyyer_apiuser -d vyyer_api -p 5432
+  332  vi api/.env
+  333  sudo docker build -t registry.gitlab.com/teamscanblox/api/api_php:1.5.0 -f Dockerfile_multi.php .
+  334  kubectl cp -h
+  335  curl localhost:8081
+  336  curl localhost:8080
+  337  exit
+  338  ps -a
+  339  top
+  340  fg
+  341  history | grep psql
+  342  psql --host 127.0.0.1 -U vyyer_apiuser -d vyyer_api -p 5432
+  343  pgrep kubectl or ps aux | grep kubectl
+  344  pgrep kubectl
+  345  sudo kill 194349
+  346  docker image ls
+  347  docker inspect b64b81b9881e
+  348  df -h
+  349  psql --host 127.0.0.1 -U vyyer_apiuser -d vyyer_api -p 5432
+  350  history | grep port-forward
+  351  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  352  pgrep kubectl
+  353  curl locahost:8080
+  354  curl localhost:8080
+  355  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi &
+  356  kubectl get pods -n unifiedapi
+  357  kubectl logs api-nginx-experimental-front-nodejs-nginx-6c8cf86f8d-9qwn7 -n unifiedapi
+  358  pgrep kubectl 
+  359  sudo kill 1786344
+  360  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  361  pgrep kubectl 
+  362  sudo kill 1786344
+  363  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8080:80 -n unifiedapi
+  364  kubectl port-forward svc/api-nginx-experimental-front-nodejs-nginx 8081:80 -n unifiedapi
+  365  cd vyyer/API_experimental/
+  366  vi docker-compose.yml 
+  367  docker-compose up -d
+  368  cat main.sh 
+  369   sudo docker-compose run --rm composer php artisan migrate:refresh --seed
+  370  cat docker-compose.yml 
+  371  docker-compose up -d --no-deps --build postgresql
+  372  docker-compose up -d --no-deps --rebuild postgresql
+  373  docker-compose up -d --no-deps --delete postgresql
+  374  docker-compose up -d --no-deps --recreate postgresql
+  375  docker-compose up -d --no-deps --force-recreate postgresql
+  376  docker-compose up -d
+  377   sudo docker-compose run --rm composer php artisan migrate:refresh --seed
+  378  history | grep pg
+  379  pgrep kubectl
+  380  docker image ls
+  381  cd postgredb/
+  382  cat docker-compose.yml 
+  383  sudo rm -r postgredb/
+  384  sudo rm -r postgredb
+  385  suod mkdir posgredb
+  386  sudo mkdir posgredb
+  387  docker-compose up -d --no-deps --force-recreate postgresql
+  388  docker-compose up -d --no-deps --force-recreate postgresql
+  389  docker-compose up -d
+  390  docker ps
+  391  docker ps
+  392   sudo docker-compose run --rm composer php artisan migrate:refresh --seed
+  393  exit
+  394  kubectl get pods
+  395  kubectl get pods -n unifiedapi
+  396  docker image ls
+  397  cd vyyer/API
+  398  ls
+  399  docker ps
+  400  docker stop b2957316e9d9
+  401  cat api/.env
+  402  cd ..
+  403  cd API_experimental/
+  404  cat .env
+  405  cat api/env
+  406  cat api/.env
+  407  vi api/.env 
+  408  docker-compose up -d
+  409  cat docker-compose.yml 
+  410  docker ps
+  411  docker-compose down
+  412  cd vyyer/API_experimental/
+  413  docker-compose up -d
+  414  df -h
+  415  kubectl get pods -n unifiedapi
+  416  kubectl exect -it postgres-postgresql-0 bash
+  417  kubectl exec -it postgres-postgresql-0 bash
+  418  kubectl exec -it postgres-postgresql-0 bash -n unifiedapi]
+  419  kubectl exec -it postgres-postgresql-0 bash -n unifiedapi
+  420  kubectl exec -it postgres-postgresql-0 bash -n unifiedapi
+  421  df -h
+  422  kubectl exec -it postgres-postgresql-0 bash -n unifiedapi
+  423  kubectl get pvc -n unifiedapi
+  424  exit
+  425  history | grep helm
+  426  history | grep secret
+  427  history | grep secret
+  428  kubectl get secrets -n unifidapi
+  429  kubectl get secrets
+  430  kubectl get secrets -n unifiedapi
+  431  history | grep regcred
+  432  history | grep regcred
+  433  kubectl get secret regcred -n unifiedapi -o yaml
+  434  history | grep "helm upgrade"
+  435  docker image ls
+  436  exit
+  437  cd vyyer/soc-2_scripts_data/
+  438  git status
+  439  cd ..
+  440  cd ..
+  441  cd vyyer/face-match/
+  442  git status
+  443  cd ..
+  444  cd ..
+  445  rm -r vyyer/
+  446  sudo rm -r vyyer/
+  447  ls
+  448  docker image ls
+  449  docker ps
+  450  docker stop $(docker ps -a -q)
+  451  docker image ls
+  452  docker ps
+  453  kubectl get pods
+  454  docker system prune
+  455  docker image ls
+  456  docker image prune
+  457  docker ps
+  458  ls
+  459  cat prometheus_notes.md 
+  460  cat values.yaml 
+  461  cat values.yaml 
+  462  rm values.yaml 
+  463  ls
+  464  cat example-config.yml 
+  465  cd vyyer/
+  466  ls
+  467  cd ..
+  468  rm -r vyyer/
+  469  sudo rm -r vyyer/
+  470  cd monitoring_saharok/
+  471  ls
+  472  git status
+  473  cd ..
+  474  ls
+  475  rm -r fluentd
+  476  sudo rm -r fluentd
+  477  rm -r fluentd4conundrum/
+  478  rm -r consul/
+  479  sudo rm -r consul/
+  480  sudo rm -r alertmanager-discord/
+  481  sudo rm -r devops-project/
+  482  cd cloudmapper/
+  483  ls
+  484  git status
+  485  git branch
+  486  cd ..
+  487  sudo rm -r cloudmapper/
+  488  sudo rm -r k8s-backup-mongodb/
+  489  sudo rm -r sample-chart/
+  490  sudo rm -r vault
+  491  sudo rm -r docker-deep-dive/
+  492  sudo rm -r elastic_custom/
+  493  sudo rm -r kubectl
+  494  sudo rm -r k8s_games/
+  495  sudo rm -r kfd-flask/
+  496  ls
+  497  cat .docker/config.json 
+  498  exit
+  499  ls
+  500  exit
+  501  history 
+  502  history > hist.txt
