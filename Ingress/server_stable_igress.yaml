@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+    meta.helm.sh/release-name: server-stable
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2022-03-17T10:43:10Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: server-stable
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: server
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: server-0.1.0
+  name: server-stable
+  namespace: default
+  resourceVersion: "7561700"
+  uid: dbcb48b8-0a38-42cd-b530-e5c44f929e0b
+spec:
+  rules:
+  - host: new.saharok.store
+    http:
+      paths:
+      - backend:
+          service:
+            name: server-stable
+            port:
+              number: 80
+        path: /api
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - new.saharok.store
+    secretName: new-saharok-store-tls
+status:
+  loadBalancer:
+    ingress:
+    - ip: 84.252.128.148
