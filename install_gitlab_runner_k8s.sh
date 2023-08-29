@@ -1,2 +1,0 @@
-kubectl create ns gitlab-runner
-helm upgrade --install --namespace gitlab-runner gitlab-runner gitlab/gitlab-runner -f gitlab_runner_values.yaml --set gitlabUrl=https://gitlab.com,runners.secret=gitlab-runner-secret,rbac.create=true,metrics.enabled=true
