@@ -1,6 +1,8 @@
 ## Name
 Iac_for_k8s
 
+[![GitHub Actions Demo](https://github.com/werstatyw/Iac_for_k8s/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/werstatyw/Iac_for_k8s/actions/workflows/github-actions-demo.yml)
+
 ## Description
 This is a project devoted completed infrastructure/projects on k8s and similar
 
