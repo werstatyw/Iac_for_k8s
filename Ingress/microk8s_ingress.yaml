@@ -1,0 +1,51 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-microk8s
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: isaid.zx@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-microk8s
+    solvers:
+      - http01:
+          ingress:
+            class: public
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: werss-portal
+  annotations:
+    kubernetes.io/ingress.class: public
+    cert-manager.io/cluster-issuer: letsencrypt-microk8s
+  labels:
+    app: my-app
+spec:
+  rules:
+    - host: wersss.mooo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-prom-stack-grafana
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - wersss.mooo.com
+      secretName: tls-example
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kube-prom-stack-grafana
+spec:
+  type: ExternalName
+  externalName: kube-prom-stack-grafana.observability.svc.cluster.local
