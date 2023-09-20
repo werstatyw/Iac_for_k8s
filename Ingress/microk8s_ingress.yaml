@@ -36,6 +36,13 @@ spec:
                 name: kube-prom-stack-grafana
                 port:
                   number: 80
+          - path: /flask
+            pathType: Prefix
+            backend:
+              service:
+                name: flask
+                port:
+                  number: 5000
   tls:
     - hosts:
         - wersss.mooo.com
@@ -49,3 +56,12 @@ metadata:
 spec:
   type: ExternalName
   externalName: kube-prom-stack-grafana.observability.svc.cluster.local
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: flask
+spec:
+  type: ExternalName
+  externalName: flask.default.svc.cluster.local
