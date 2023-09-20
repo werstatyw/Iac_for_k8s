@@ -18,7 +18,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: werss-portal
+  name: werss-portal-flask
   annotations:
     kubernetes.io/ingress.class: public
     cert-manager.io/cluster-issuer: letsencrypt-microk8s
